@@ -1,0 +1,86 @@
+<!doctype html>
+<html ng-app="app4" ng-cloak>
+    <head>
+        <title>AngularJS Tutorial 4</title>
+        <style>
+            [ng\:cloak], [ng-cloak], .ng-cloak {
+                display: none;
+            }
+            .bluetext {
+                color:blue;
+            }
+            .boldtext {
+                font-weight: bold;
+            }
+            .stripedblue {
+                color:#007FFF;
+                background-color:#DBE9F4;
+            }
+            .stripedbeige {
+                color:#CC0000;
+                background-color:#F5F5DC;
+            }
+        </style>
+    </head>
+    <body>
+    <div ng-controller="eventCtrl">
+
+        <input ng-blur="blurVal = blurVal + 1"
+               ng-click="clickVal = clickVal + 1"
+               ng-dblclick="dblClickVal = dblClickVal + 1"
+               ng-copy="copyVal = copyVal + 1"
+               ng-paste="pasteVal = pasteVal + 1"
+               ng-cut="cutVal = cutVal + 1"
+               ng-focus="focusVal = focusVal + 1"
+               ng-model="something"
+               ng-change="changeVal = changeVal + 1"
+               ng-keydown="keyDownEvent($event)"
+               ng-mouseenter="mouseEnterVal = mouseEnterVal + 1"
+               ng-mouseleave="mouseLeaveVal = mouseLeaveVal + 1"
+
+        />
+
+        <h4>Blur events count: {{blurVal}}</h4>
+        <h4>Click events count: {{clickVal}}</h4>
+        <h4>Double Click events count: {{dblClickVal}}</h4>
+        <h4>Copy events count: {{copyVal}}</h4>
+        <h4>Paste events count: {{pasteVal}}</h4>
+        <h4>Cut events count: {{cutVal}}</h4>
+        <h4>Focus events count: {{focusVal}}</h4>
+        <h4>Change events count: {{changeVal}}</h4>
+        <h4>Key Pressed : {{downedKey}}</h4>
+        <h4>Mouse Enter events count : {{mouseEnterVal}}</h4>
+        <h4>Mouse Leave events count : {{mouseLeaveVal}}</h4>
+
+        <button ng-disabled="shouldDisableButton">I am a button</button>
+        <input type="checkbox" ng-model="shouldDisableButton" />Disable Button
+
+        <br><br>
+        <input type="checkbox" ng-model="pastMorning" />Morning
+        <p ng-hide="!pastMorning">Good Morning!</p>
+        <p ng-hide="pastMorning">Good errrr... not morning!</p>
+
+        <br>
+
+        <select ng-model="textStyle">
+            <option value="bluetext">Blue Text</option>
+            <option value="boldtext">Blue Text</option>
+        </select>
+
+        <p ng-class="textStyle">A really cool paragraph</p>
+        <br>
+        <table>
+            <tr ng-repeat="capital in capitals"
+                ng-class-even="'stripedblue'"
+                ng-class-odd="'stripedbeige'">
+                <td>{{capital.city}}</td>
+                <td>{{capital.state}}</td>
+            </tr>
+        </table>
+
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam4.js"></script>
+    </body>
+</html>

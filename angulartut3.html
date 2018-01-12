@@ -1,0 +1,68 @@
+<html ng-app="app3" ng-cloak>
+     <head>
+         <title>AngularJS Tutorial 3</title>
+         <style>
+             [ng\:cloak], [ng-cloak], .ng-cloak {
+                 display: none;
+             }
+         </style>
+     </head>
+
+     <body>
+
+     <div ng-controller="gListCtrl">
+         <h1>{{groceries.length}} Groceries to Get</h1>
+         <ol>
+             <li ng-repeat="grocery in groceries">{{grocery.item}}</li>
+         </ol>
+
+         <table border="1">
+             <tr ng-repeat-start="grocery in groceries">
+                 <td>
+                     {{grocery.item}}
+                 </td>
+             </tr>
+             <tr ng-repeat-end>
+                 <td>
+                     {{grocery.purchased}}
+                 </td>
+             </tr>
+         </table>
+
+         <input ng-model="groceries[0].item"/>
+
+         <!--
+         <h3>Grocery List</h3>
+         <div ng-include="'grocerylist.html"></div>
+
+         <label>
+         <input type="checkbox" ng-model="showList">
+         Show Unordered List
+         </label>
+
+         <ng-include src="getList()"></ng-include>
+         -->
+         <br>
+         <input ng-model="switcherNumber" />
+
+         <div ng-switch="switcherNumber">
+             <span ng-switch-when="1">One one one!</span>
+             <span ng-switch-when="2">Two Two Two!</span>
+             <span ng-switch-when="3">Three Three Three!</span>
+             <div ng-switch-when="555333">
+                 <table border="1">
+                     <tr>
+                         <td>POD MAC BATO</td>
+                     </tr>
+                 </table>
+             </div>
+             <span ng-switch-default>HEY HEY!</span>
+         </div>
+
+
+     </div>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+     <script src="js/exam3.js"></script>
+     </body>
+
+</html>
