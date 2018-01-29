@@ -20,7 +20,8 @@
             border: solid orange;
         }
         .clickable{
-            cursor: pointer
+            cursor: pointer;
+            user-select: none;
         }
         .products-div{
             display: inline-block;
@@ -49,7 +50,7 @@
         <div class="products-div">
             <ul class="list-group">
                 <li ng-repeat="item in availableProducts" ng-attr-title="{{item.description}}" class="clickable list-group-item" span ng-click="addToBasket(item)">
-                    {{item.name}} / ${{item.price}}
+                    {{item.name}} (${{item.price}})
                 </li>
             </ul>
         </div>
