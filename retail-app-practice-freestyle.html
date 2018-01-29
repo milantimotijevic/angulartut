@@ -1,0 +1,71 @@
+<html ng-app="app">
+    <head>
+        <title>Retail App Practice Freestyle</title>
+    </head>
+    <link rel="stylesheet", type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        [ng\:cloak], [ng-cloak], .ng-cloak{
+            display: none;
+        }
+        table{
+            width:400px;
+            text-align: left;
+            border: 2px solid black;
+            padding: 10px;
+        }
+        input.ng-dirty.ng-invalid{
+            border-color: red;
+        }
+        .wrapper{
+            border: solid orange;
+        }
+        .clickable{
+            cursor: pointer
+        }
+        .products-div{
+            display: inline-block;
+            border: solid blue;
+            min-width: 400px;
+            min-height: 400px;
+        }
+        .basket-div{
+            float: right;
+            display: inline-block;
+        }
+        .basket-item{
+            background-color: #6495ED;
+        }
+        .purchase-button{
+            float: right;
+        }
+    </style>
+
+    <body ng-controller="mainController" class="container wrapper">
+    <div>
+        <h1>Search Products:</h1>
+        <input type="text" ng-model="productSearchModel" ng-change="searchProducts(productSearchModel)"/>
+        <button ng-click="showAllProducts()">Show All</button><br><br>
+
+        <div class="products-div">
+            <ul class="list-group">
+                <li ng-repeat="item in availableProducts" ng-attr-title="{{item.description}}" class="clickable list-group-item" span ng-click="addToBasket(item)">
+                    {{item.name}} / ${{item.price}}
+                </li>
+            </ul>
+        </div>
+
+        <button class="purchase-button">Complete Purchase</button>
+        <div class="basket-div">
+            <ul>
+                <li ng-repeat="item in basket" class="clickable list-group-item basket-item" ng-click="removeFromBasket(item)">
+                    {{item.name}} (x{{item.quantity}})
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/retail-app-practice-freestyle.js"></script>
+    </body>
+</html>

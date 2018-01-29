@@ -1,0 +1,122 @@
+<html ng-app="app5">
+    <head>
+        <title>AngularJS Tutorial 5</title>
+    </head>
+    <style>
+        [ng\:cloak], [ng-cloak], .ng-cloak{
+            display: none;
+        }
+        table{
+            width:400px;
+            text-align: left;
+            border: 2px solid black;
+            padding: 10px;
+        }
+        input.ng-dirty.ng-invalid{
+            border-color: red;
+        }
+    </style>
+    <body>
+
+    <div ng-controller="gListCtrl">
+
+        <h3>Grocery List</h3>
+
+        <table>
+            <thread>
+                <tr>
+                    <th>Item</th>
+                    <th>Purchased</th>
+                </tr>
+            </thread>
+            <tr ng-repeat="grocery in groceries">
+                <td>{{grocery.item}}</td>
+                <td>
+                    <input type="checkbox" ng-model="grocery.purchased" />
+                </td>
+            </tr>
+        </table>
+
+        <label>New Item:
+            <input type="text" ng-model="newItem" />
+            <button ng-click="addItem(newItem)">Add Item</button>
+
+            <h4>{{missingNewItemError}}</h4>
+        </label>
+    </div>
+
+
+    <div ng-controller="userCtrl">
+
+        <form name="userForm" ng-submit="saveUser(userInfo)">
+
+            <label>First Name</label>
+            <input type="text" name="fName"
+                   ng-model="userInfo.fName"
+                   ng-required="true"
+                   ng-minlength="2" />
+            <span class="error-message"
+                  ng-show="userForm.fName.$dirty &&
+                    userForm.fName.$error.required">Must Enter a First Name</span>
+            <span class="error-message"
+                  ng-show="userForm.fName.$dirty &&
+                  userForm.fName.$error.minlength">Must be 2 or more characters</span>
+            <br><br>
+
+            <label>Last Name</label>
+            <input type="text" name="lName"
+                   ng-model="userInfo.lName"
+                   ng-required="true"
+                   ng-minlength="2" />
+            <span class="error-message"
+                  ng-show="userForm.lName.$dirty &&
+                    userForm.fName.$error.required">Must Enter a Last Name</span>
+            <span class="error-message"
+                  ng-show="userForm.lName.$dirty &&
+                  userForm.lName.$error.minlength">Must be 2 or more characters</span>
+            <br><br>
+
+            <label>Street:</label>
+            <input type="text" name="street"
+                   ng-model="userInfo.street"
+                   ng-required="true"
+                   ng-minlength="6"
+                   ng-pattern="/^(\d{3,})\s?(\w{0,5})\s([a-zA-Z]{2,30})\s([a-zA-Z]{2,15})\.?\s?(\w{0,5})$/" />
+            <span class="error-message"
+                  ng-show="userForm.street.$dirty &&
+                  userForm.street.$invalid">Must Enter a proper address</span>
+            <br><br>
+            <label>Subscribe:</label>
+            <input type="checkbox" name="subscribe"
+                   ng-model="userInfo.subscribe"
+                   ng-true-value="'Subscribe'"
+                   ng-false-value="'Don\'t sub'" />
+            <br><br>
+            <label>Delivery Method:</label>
+            <select name="delivery" ng-model="userInfo.delivery"
+                    ng-required="true">
+                <option value="Email">Email</option>
+                <option value="Mail">Mail</option>
+            </select>
+            <br><br>
+
+            <input type="submit" value="Save"
+                   ng-disabled="userForm.$invalid" />
+        </form>
+
+        <br><br>
+
+        <ul>
+            <li ng-repeat="item in user">
+                {{'User: ' + item.fName + ' ' + item.lName + ' ' + item.street + ' ' + item.subscribe + ' ' + item.delivery}}
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/exam5.js"></script>
+    </body>
+</html>

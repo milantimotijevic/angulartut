@@ -1,0 +1,75 @@
+<html ng-app="app" ng-cloak>
+    <head>
+        <title>Freestyle Form Practice</title>
+        <style>
+            [ng\:cloak], [ng-cloak], .ng-cloak{
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div ng-controller="mainCtrl">
+        <label>Felons</label>
+        <br><br>
+
+        <form name="felonsForm" ng-submit="saveFelon(newFelon)">
+            <label>First Name:</label>
+            <input type="text" name="fName" ng-model="newFelon.fName" ng-required="true" ng-minlength="2" />
+            <span class="error-message"
+                  ng-show="felonsForm.fName.$dirty && felonsForm.fName.$error.required">Must enter a first name</span>
+            <span class="error-message"
+                  ng-show="felonsForm.fName.$dirty && felonsForm.fName.$error.minlength">Must contain at least 2 characters</span><br>
+
+            <label>Last Name:</label>
+            <input type="text" name="lName" ng-model="newFelon.lName" ng-required="true" ng-minlength="2" />
+            <span class="error-message"
+                  ng-show="felonsForm.lName.$dirty && felonsForm.lName.$error.required">Must enter a last name</span>
+            <span class="error-message"
+                  ng-show="felonsForm.lName.$dirty && felonsForm.lName.$error.minlength">Must contain at least 2 characters</span><br>
+
+            <label>Title:</label>
+            <input type="text" name="title" ng-model="newFelon.title" ng-required="true" ng-minlength="3" />
+            <span class="error-message" ng-show="felonsForm.title.$dirty && felonsForm.title.$error.required">Must Enter a Title</span>
+            <span class="error-message" ng-show="felonsForm.title.$dirty && felonsForm.title.$error.minlength">Must contain at least 3 characters</span><br>
+
+            <label>Govedoness Level:</label>
+            <select name="govedonessLevel" ng-model="newFelon.govedonessLevel" ng-required="true"><br>
+                <option ng-repeat="i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" value="{{i}}">
+                    {{i}}
+                </option>
+            </select><br>
+            <label>Evil:</label>
+            <input type="checkbox" ng-model="newFelon.evil" ng-true-value="'{{glossary.evil}}'" ng-false-value="'{{glossary.notEvil}}'" /><br>
+            <label>Kill On Sight:</label>
+            <input type="checkbox" ng-model="newFelon.killOnSight" ng-true-value="'{{glossary.kos}}'" ng-false-value="'{{glossary.safe}}'" /><br>
+            <input type="submit" value="Save Felon" ng-disabled="felonsForm.$invalid" />
+        </form>
+        <br><br>
+        <label>Known Felons:</label>
+        <table border="solid black">
+            <thead>
+                <tr>
+                    <td>First Name</td>
+                    <td>Last Name</td>
+                    <td>Title</td>
+                    <td>Govedoness Level</td>
+                    <td>Moral Stance</td>
+                    <td>Instructions if encountered</td>
+                </tr>
+            </thead>
+            <tr ng-repeat="item in felons">
+                <td>{{item.fName}}</td>
+                <td>{{item.lName}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.govedonessLevel}}</td>
+                <td>{{item.evil}}</td>
+                <td>{{item.killOnSight}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="js/form-practice-freestyle.js"></script>
+    </body>
+</html>
